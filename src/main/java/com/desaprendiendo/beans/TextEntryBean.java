@@ -14,7 +14,7 @@ public class TextEntryBean implements Serializable {
 		return BEAN_NAME;
 	}
 
-	private String firstName;
+	private String firstName = "Default value";
 	private String lastName;
 	private String address1;
 	private String address2;

@@ -6,5 +6,20 @@
 	xmlns:icecore="http://www.icefaces.org/icefaces/core">
 	<ui:define name="content">
 		<div>Bienvenido al curso IceFaces de <strong>Desaprendiendo</strong></div>
+		<h:form id="textEntryForm">
+            <ace:panel id="personalInfoInputPanel" header="Personal Info" styleClass="required-styling-demo">
+                <h:panelGrid id="inputGrid" columns="1" width="100%" styleClass="textEntryInputTable">
+                    <ace:textEntry id="firstNameInput" value="#{textEntryBean.firstName}" label="First Name" labelPosition="left" required="true" requiredIndicator="(*)" indicatorPosition="right">
+                        <ace:ajax render="@this firstNameOutput" event="blur"/>
+                    </ace:textEntry>
+				</h:panelGrid>
+            </ace:panel>
+            
+            <ace:panel id="personalInfoOutputPanel" header="Entered data">
+                <h:panelGrid id="outputGrid" width="100%" style="text-align: left;">
+                    <h:outputText id="firstNameOutput" value="first name: #{textEntryBean.firstName}"/>
+                </h:panelGrid>
+            </ace:panel>
+        </h:form>
 	</ui:define>
 </ui:composition>
