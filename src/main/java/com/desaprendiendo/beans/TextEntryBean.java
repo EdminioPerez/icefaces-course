@@ -10,7 +10,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ManagedBean(name = TextEntryBean.BEAN_NAME)
+@ManagedBean(name = "formularioControl")
 @ViewScoped
 public class TextEntryBean implements Serializable {
 	public static final String BEAN_NAME = "textEntryBean";
