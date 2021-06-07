@@ -12,18 +12,32 @@
 		<h:form id="textEntryForm">
             <ace:panel id="personalInfoInputPanel" header="Personal Info" styleClass="required-styling-demo">
                 <h:panelGrid id="inputGrid" columns="1" width="100%" styleClass="textEntryInputTable">
-                    <ace:textEntry id="firstNameInput" value="#{formularioControl.firstName}" label="First Name" labelPosition="left" required="true" requiredIndicator="(*)" indicatorPosition="right">
+                    <ace:textEntry id="firstNameInput" value="#{formularioControl.firstName}" 
+                    	requiredMessage="Debe indicar un valor"	label="First Name" labelPosition="left" required="true" requiredIndicator="(*)" indicatorPosition="right">
                         <ace:ajax render="@this firstNameOutput" event="valueChange"/>
-                        <ace:clientValidateRequired />
                     </ace:textEntry>
-					<ace:message id="firstNameMsg" for="firstNameInput" initEffect="bounce" changeEffect="explode"/>
+					<ace:message id="firstNameMsg" for="firstNameInput" />
+					
+					<ace:simpleSelectOneMenu id="selectProvince" value="#{formularioControl.province}" required="true"
+						valueChangeListener="#{formularioControl.provinceChange}" label="Select province:" labelPosition="top">
+	                    <f:selectItem itemValue="" itemLabel="Seleccione una provincia" noSelectionOption="true" />
+	                    <f:selectItems value="#{formularioControl.getComboValuesFromBD()}" />
+	                </ace:simpleSelectOneMenu>
+	                <ace:message id="provinceMsg" for="selectProvince" />
+	                
+	                <h:commandButton value="Salvar" actionListener="#{formularioControl.submitButton}"/>
 				</h:panelGrid>
             </ace:panel>
             
             <ace:panel id="personalInfoOutputPanel" header="Entered data">
                 <h:panelGrid id="outputGrid" width="100%" style="text-align: left;">
                     <h:outputText id="firstNameOutput" value="first name: #{formularioControl.firstName}"/>
+                    <h:outputText id="provinceOutput" value="Provincia: #{formularioControl.province}"/>
                 </h:panelGrid>
+            </ace:panel>
+            
+            <ace:panel id="employeeInfoOutputPanel" header="All Faces Messages">
+                <ace:messages id="allMsgsA" for="@inView" />
             </ace:panel>
         </h:form>
 	</ui:define>

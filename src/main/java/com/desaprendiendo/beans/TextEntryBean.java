@@ -1,11 +1,14 @@
 package com.desaprendiendo.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,12 +99,26 @@ public class TextEntryBean implements Serializable {
 		logger.debug("Click en boton de Submit");
 
 		logger.trace("Valor del bean:{}", this.toString());
+
+	}
+
+	public List<SelectItem> getComboValuesFromBD() {
+		List<SelectItem> valoresBD = new ArrayList<>();
+
+		valoresBD.add(new SelectItem(1L, "Zaragoza"));
+		valoresBD.add(new SelectItem(2L, "Barcelona"));
+
+		return valoresBD;
 	}
 
 	@Override
 	public String toString() {
-		return "TextEntryBean [firstName=" + firstName + ", lastName=" + lastName + ", address1=" + address1
-				+ ", address2=" + address2 + ", city=" + city + ", province=" + province + ", country=" + country + "]";
+		return "TextEntryBean [" + (firstName != null ? "firstName=" + firstName + ", " : "")
+				+ (lastName != null ? "lastName=" + lastName + ", " : "")
+				+ (address1 != null ? "address1=" + address1 + ", " : "")
+				+ (address2 != null ? "address2=" + address2 + ", " : "") + (city != null ? "city=" + city + ", " : "")
+				+ (province != null ? "province=" + province + ", " : "")
+				+ (country != null ? "country=" + country : "") + "]";
 	}
 
 }

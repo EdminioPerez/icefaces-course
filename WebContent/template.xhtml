@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
 	<f:view contentType="text/html">
 		<h:head>
 			<f:facet name="first">
@@ -23,6 +24,12 @@
 			<ui:insert name="content" />
 			<ui:insert name="footer" />
 			<div>Estoy dentro del template</div>
+			
+			<ace:growlMessages id="allMsgsGrowl"
+                 for="@inView"
+                closeAll="true"
+                maxVisibleMessages="3"
+                position="bottom-right"/>
 		
 			<h:outputStylesheet library="course" name="css/main.css" />
 		</h:body>
