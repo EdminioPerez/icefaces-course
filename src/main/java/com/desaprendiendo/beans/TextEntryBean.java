@@ -31,6 +31,7 @@ public class TextEntryBean implements Serializable {
 	private String city;
 	private String province;
 	private String country;
+	private String ciudadSeleccionada;
 
 	public String getFirstName() {
 		return firstName;
@@ -88,6 +89,14 @@ public class TextEntryBean implements Serializable {
 		this.address2 = address2;
 	}
 
+	public String getCiudadSeleccionada() {
+		return ciudadSeleccionada;
+	}
+
+	public void setCiudadSeleccionada(String ciudadSeleccionada) {
+		this.ciudadSeleccionada = ciudadSeleccionada;
+	}
+
 	public void provinceChange(ValueChangeEvent event) {
 		Object value = event.getNewValue();
 		if (value != null) {
@@ -105,8 +114,10 @@ public class TextEntryBean implements Serializable {
 	public List<SelectItem> getComboValuesFromBD() {
 		List<SelectItem> valoresBD = new ArrayList<>();
 
-		valoresBD.add(new SelectItem(1L, "Zaragoza"));
-		valoresBD.add(new SelectItem(2L, "Barcelona"));
+		for (int y = 0; y < 2000; y++) {
+			valoresBD.add(new SelectItem("Zaragoza" + y, "Zaragoza" + y));
+			valoresBD.add(new SelectItem("Barcelona" + y, "Barcelona" + y));
+		}
 
 		return valoresBD;
 	}

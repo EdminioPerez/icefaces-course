@@ -25,6 +25,15 @@
 	                </ace:simpleSelectOneMenu>
 	                <ace:message id="provinceMsg" for="selectProvince" />
 	                
+	                <ace:autoCompleteEntry id="autoComplete" value="#{formularioControl.ciudadSeleccionada}" 
+	                					rows="50" width="400"
+		                                   filterMatchMode="endsWith"
+		                                   label="Cities of the World:"
+		                                   labelPosition="left">
+		                <f:selectItems value="#{formularioControl.getComboValuesFromBD()}" />
+		               
+		            </ace:autoCompleteEntry>
+	                
 	                <h:commandButton value="Salvar" actionListener="#{formularioControl.submitButton}"/>
 				</h:panelGrid>
             </ace:panel>
@@ -33,6 +42,7 @@
                 <h:panelGrid id="outputGrid" width="100%" style="text-align: left;">
                     <h:outputText id="firstNameOutput" value="first name: #{formularioControl.firstName}"/>
                     <h:outputText id="provinceOutput" value="Provincia: #{formularioControl.province}"/>
+                    <h:outputText id="provinceOutput2" value="Provincia: #{formularioControl.ciudadSeleccionada}"/>
                 </h:panelGrid>
             </ace:panel>
             
