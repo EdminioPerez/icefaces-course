@@ -2,19 +2,26 @@ package com.desaprendiendo.beans;
 
 import java.io.Serializable;
 
-import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @ManagedBean(name = TextEntryBean.BEAN_NAME)
-@CustomScoped(value = "#{window}")
+@ViewScoped
 public class TextEntryBean implements Serializable {
 	public static final String BEAN_NAME = "textEntryBean";
+
+	private static final Logger logger = LoggerFactory.getLogger(TextEntryBean.class);
 
 	public String getBeanName() {
 		return BEAN_NAME;
 	}
 
-	private String firstName = "Default value";
+	private String firstName;
 	private String lastName;
 	private String address1;
 	private String address2;
@@ -77,4 +84,24 @@ public class TextEntryBean implements Serializable {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
+
+	public void provinceChange(ValueChangeEvent event) {
+		Object value = event.getNewValue();
+		if (value != null) {
+			logger.debug("Valor del combo:{}", value.toString());
+		}
+	}
+
+	public void submitButton(ActionEvent event) {
+		logger.debug("Click en boton de Submit");
+
+		logger.trace("Valor del bean:{}", this.toString());
+	}
+
+	@Override
+	public String toString() {
+		return "TextEntryBean [firstName=" + firstName + ", lastName=" + lastName + ", address1=" + address1
+				+ ", address2=" + address2 + ", city=" + city + ", province=" + province + ", country=" + country + "]";
+	}
+
 }

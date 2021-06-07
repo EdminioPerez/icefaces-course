@@ -14,15 +14,43 @@
                 <h:panelGrid id="inputGrid" columns="1" width="100%" styleClass="textEntryInputTable">
                     <ace:textEntry id="firstNameInput" value="#{textEntryBean.firstName}" label="First Name" labelPosition="left" required="true" requiredIndicator="(*)" indicatorPosition="right">
                         <ace:ajax render="@this firstNameOutput" event="valueChange"/>
+                        <ace:clientValidateRequired />
                     </ace:textEntry>
+                    <h:message for="firstNameInput"/>
+                    
+                    <ace:simpleSelectOneMenu id="selectProvince" value="#{textEntryBean.province}" valueChangeListener="#{textEntryBean.provinceChange}" label="Select province:" labelPosition="top">
+	                    <f:selectItem itemValue="" itemLabel="" />
+	                    <f:selectItem itemValue="British Columbia" itemLabel="British Columbia" />
+	                    <f:selectItem itemValue="Alberta" itemLabel="Alberta" />
+	                    <f:selectItem itemValue="Saskatchewan" itemLabel="Saskatchewan" />
+	                    <f:selectItem itemValue="Manitoba" itemLabel="Manitoba" />
+	                    <f:selectItem itemValue="Ontario" itemLabel="Ontario" />
+	                    <f:selectItem itemValue="Quebec" itemLabel="Quebec" />
+	                    <f:selectItem itemValue="Newfoundland and Labrador" itemLabel="Newfoundland and Labrador" />
+	                    <f:selectItem itemValue="Prince Edward Island" itemLabel="Prince Edward Island" />
+	                    <f:selectItem itemValue="New Brunswick" itemLabel="New Brunswick" />
+	                    <f:selectItem itemValue="Nova Scotia" itemLabel="Nova Scotia" />
+	                    <f:selectItem itemValue="Yukon" itemLabel="Yukon" />
+	                    <f:selectItem itemValue="Northwest Territories" itemLabel="Northwest Territories" />
+	                    <f:selectItem itemValue="Nunavut" itemLabel="Nunavut" />
+	                    <ace:ajax />
+	                    <ace:clientValidateRequired />
+	                </ace:simpleSelectOneMenu>
 				</h:panelGrid>
+				
+				<h:commandButton value="Submit" actionListener="#{textEntryBean.submitButton}"/>
             </ace:panel>
             
             <ace:panel id="personalInfoOutputPanel" header="Entered data">
                 <h:panelGrid id="outputGrid" width="100%" style="text-align: left;">
                     <h:outputText id="firstNameOutput" value="first name: #{textEntryBean.firstName}"/>
+                    <h:outputText id="provinceOutput" value="first name: #{textEntryBean.province}"/>
                 </h:panelGrid>
             </ace:panel>
+            
+            <h:panelGrid id="messageGrid" width="400px;">
+	            <ace:messages id="messages1" for="@inView" />
+	        </h:panelGrid>
         </h:form>
 	</ui:define>
 	
